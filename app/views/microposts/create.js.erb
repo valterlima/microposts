@@ -1,0 +1,13 @@
+<% if @result %>
+  var count = '<%= pluralize(current_user.microposts.count, "micropost") %>';
+  var notice = "<%= j flash[:success] %>";
+  <% flash.delete(:success) %>
+
+  $(".alert").remove();
+  $(".container .row").before('<div class="alert alert-success">'+notice+'</div>');
+  $("#micropost-feed").prepend("<%= j render @micropost %>");
+  $("#microposts-count").html(count);
+  $("#new_micropost")[0].reset();
+<% else %>
+  $('#new_micropost').prepend("<%= j render 'shared/error_messages', object: @micropost %>");
+<% end %>

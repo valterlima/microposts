@@ -1,0 +1,8 @@
+var notice = "<%= j flash[:success] %>";
+<% flash.delete(:success) %>
+
+$(".alert").remove();
+$(".container .row").before('<div class="alert alert-success">'+notice+'</div>');
+
+$("#micropost-<%= @micropost.id %>").remove();
+$("#microposts-count").html('<%= pluralize(current_user.microposts.count, "micropost") %>');
